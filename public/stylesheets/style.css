@@ -1,0 +1,52 @@
+
+body {
+  background-color: #05113d;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+
+.fondo-body{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: #05113d;
+  color: white;
+}
+
+.font-poppins{
+  font-family: "poppins Medium", serif;
+}
+
+.section_1_index {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('../images/fondo_section_1.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+}
+
+.section_1_index .content {
+  display: flex;
+  flex-direction: row; /* Mantiene el texto e imagen en fila */
+  gap: 20px; /* Espacio entre texto e imagen */
+  max-width: 80%;
+  align-items: center;
+}
+
+.section_1_index .image img {
+  max-width: 700px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.section_1_index h1 {
+  font-size: 2.5em;
+  margin: 0;
+}
+
+.section_1_index p {
+  font-size: 1.2em;
+  margin: 10px 0 0;
+}
