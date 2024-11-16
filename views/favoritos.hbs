@@ -1,0 +1,32 @@
+<h1 class="text-center text-white pt-3">Favoritos</h1>
+<div class="d-flex justify-content-center align-items-center pt-4 favoritos-class ">
+    {{#if favoritos.length}}
+        <table class="table-borderless  ">
+            <thead >
+            <tr >
+                <th class="p-4" >ID</th>
+                <th class="p-4" >Modelo</th>
+                <th class="p-4" >Caracteristicas</th>
+                <th class="p-4" >Precio</th>
+                <th class="p-4" >Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each favoritos}}
+                <tr>
+                    <td class="p-4" >{{this.id}}</td>
+                    <td class="p-4" >{{this.modelo}}</td>
+                    <td class="p-4" >{{this.caracteristicas}}</td>
+                    <td class="p-4" >{{this.precio}}</td>
+                    <td>
+                        <a href="/xyz" class="btn btn-success" >Ver detalle</a>
+                        <a href="/zyx" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    {{/if}}
+</div>
+
+

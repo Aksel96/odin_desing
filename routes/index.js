@@ -28,5 +28,15 @@ router.get('/catalogo', (req, res) => {
   res.render('catalogo', { title:'Catálogo | Odín', productos });
 });
 
+router.get('/favoritos', (req, res) => {
+  const favoritos = [
+    { id: '1', modelo: 'Producto 1', caracteristicas: 'Descripción del producto 1', precio: 100},
+    { id: '2', modelo: 'Producto 2', caracteristicas: 'Descripción del producto 2', precio: 200 },
+    { id: '3', modelo: 'Producto 3', caracteristicas: 'Descripción del producto 3', precio: 300 },
+    { id: '4', modelo: 'Producto 4', caracteristicas: 'Descripción del producto 4', precio: 400 },
+  ];
+  res.render('favoritos', { title:'Favoritos | Odín', favoritos });
+});
+
 
 module.exports = router;
