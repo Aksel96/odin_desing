@@ -13,6 +13,11 @@ router.get('/login', function(req, res, next) {
   res.render('login', { title: ' Login | Odin' });
 })
 
+router.get('/registrarse', function(req, res, next) {
+
+  res.render('registrarse', { title: ' Registrarse | Odin' });
+})
+
 router.get('/contacto', function(req, res, next) {
   res.render('contacto', { title: ' Contacto | Odin' });
 })
