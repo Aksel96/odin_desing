@@ -13,10 +13,10 @@ router.get('/contacto', function(req, res, next) {
 
 router.get('/catalogo', (req, res) => {
   const productos = [
-    { nombre: 'Producto 1', descripcion: 'Descripción del producto 1', precio: 100, imagen: '../images/incinerator.png' },
-    { nombre: 'Producto 2', descripcion: 'Descripción del producto 2', precio: 200, imagen: '../images/iron_man.png' },
-    { nombre: 'Producto 3', descripcion: 'Descripción del producto 3', precio: 300, imagen: '../images/minecraft.jpg' },
-    { nombre: 'Producto 4', descripcion: 'Descripción del producto 4', precio: 400, imagen: '../images/thor_pc.png' },
+    { id : 1 ,nombre: 'Producto 1', descripcion: 'Descripción del producto 1', precio: 100, imagen: '../images/incinerator.png' },
+    { id : 2,nombre: 'Producto 2', descripcion: 'Descripción del producto 2', precio: 200, imagen: '../images/iron_man.png' },
+    { id : 3,nombre: 'Producto 3', descripcion: 'Descripción del producto 3', precio: 300, imagen: '../images/minecraft.jpg' },
+    { id : 4,nombre: 'Producto 4', descripcion: 'Descripción del producto 4', precio: 400, imagen: '../images/thor_pc.png' },
   ];
   res.render('catalogo', { title:'Catálogo | Odín', productos });
 });
@@ -86,7 +86,25 @@ router.post('/login2', (req, res, next) => {
 
 
 
+//const Favoritos = require('./models/Favoritos'); // Modelo para almacenar los favoritos
 
+router.post('/favoritos', async (req, res) => {
+  const { id } = req.body;
+
+  if (!id) {
+    return res.status(400).json({ error: 'ID del producto es requerido' });
+  }
+
+  try {
+    // Guarda el ID en la base de datos
+    //await Favoritos.create({ productoId: id });
+    // eso no se que hacia pero aqui se hace el insert
+    res.status(200).json({ message: 'Producto añadido a favoritos' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error al añadir el producto a favoritos' });
+  }
+});
 
 
 module.exports = router;
