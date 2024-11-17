@@ -1,26 +1,27 @@
 <h1 class="text-center text-white pt-3">Favoritos</h1>
-<div class="d-flex justify-content-center align-items-center pt-4 favoritos-class ">
+<div class="d-flex justify-content-center align-items-center pt-4 favoritos-class">
     {{#if favoritos.length}}
-        <table class="table-borderless  ">
-            <thead >
-            <tr >
-                <th class="p-4" >ID</th>
-                <th class="p-4" >Modelo</th>
-                <th class="p-4" >Caracteristicas</th>
-                <th class="p-4" >Precio</th>
-                <th class="p-4" >Acciones</th>
+        <table class="table-borderless">
+            <thead>
+            <tr>
+                <th class="p-4">ID</th>
+                <th class="p-4">Modelo</th>
+                <th class="p-4">Caracteristicas</th>
+                <th class="p-4">Precio</th>
+                <th class="p-4">Acciones</th>
             </tr>
             </thead>
             <tbody>
             {{#each favoritos}}
                 <tr>
-                    <td class="p-4" >{{this.id}}</td>
-                    <td class="p-4" >{{this.modelo}}</td>
-                    <td class="p-4" >{{this.caracteristicas}}</td>
-                    <td class="p-4" >{{this.precio}}</td>
+                    <td class="p-4">{{this.id}}</td>
+                    <td class="p-4">{{this.modelo}}</td>
+                    <td class="p-4">{{this.caracteristicas}}</td>
+                    <td class="p-4">{{this.precio}}</td>
                     <td>
-                        <a href="/xyz" class="btn btn-success" >Ver detalle</a>
-                        <a href="/zyx" class="btn btn-danger">Eliminar</a>
+                        <form action="/eliminar-favorito/{{this.id}}" method="POST" style="display:inline;">
+                            <button type="button" class="btn btn-danger" onclick="confirmarEliminacion(event, this)">Eliminar</button>
+                        </form>
                     </td>
                 </tr>
             {{/each}}
@@ -28,5 +29,21 @@
         </table>
     {{/if}}
 </div>
+
+
+<script>
+    function confirmarEliminacion(event, button) {
+        event.preventDefault();
+
+        const confirmar = confirm("¿Estás seguro de querer eliminar este favorito?");
+        if (confirmar) {
+            button.parentElement.submit();
+        } else {
+            console.log("Eliminación cancelada");
+        }
+    }
+</script>
+
+
 
 
