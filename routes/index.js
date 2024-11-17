@@ -12,7 +12,13 @@ router.get('/contacto', function(req, res, next) {
 })
 
 router.get('/catalogo', (req, res) => {
-  res.render('catalogo');  // Aquí renderizas la página catalogo.pug, catalogo.ejs, etc.
+  const productos = [
+    { nombre: 'Producto 1', descripcion: 'Descripción del producto 1', precio: 100, imagen: '../images/incinerator.png' },
+    { nombre: 'Producto 2', descripcion: 'Descripción del producto 2', precio: 200, imagen: '../images/iron_man.png' },
+    { nombre: 'Producto 3', descripcion: 'Descripción del producto 3', precio: 300, imagen: '../images/minecraft.jpg' },
+    { nombre: 'Producto 4', descripcion: 'Descripción del producto 4', precio: 400, imagen: '../images/thor_pc.png' },
+  ];
+  res.render('catalogo', { title:'Catálogo | Odín', productos });
 });
 
 
