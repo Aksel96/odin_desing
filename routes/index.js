@@ -12,10 +12,37 @@ router.get('/contacto', function(req, res, next) {
 
 router.get('/catalogo', (req, res) => {
   const productos = [
-    { id : 1 ,nombre: 'Producto 1', descripcion: 'Descripción del producto 1', precio: 100, imagen: '../images/incinerator.png' },
-    { id : 2,nombre: 'Producto 2', descripcion: 'Descripción del producto 2', precio: 200, imagen: '../images/iron_man.png' },
-    { id : 3,nombre: 'Producto 3', descripcion: 'Descripción del producto 3', precio: 300, imagen: '../images/minecraft.jpg' },
-    { id : 4,nombre: 'Producto 4', descripcion: 'Descripción del producto 4', precio: 400, imagen: '../images/thor_pc.png' },
+    { id : 1 ,nombre: 'Hatake', descripcion: 'Procesador: Intel Core i9-13900K, GPU: NVIDIA GeForce RTX 4090 24GB, RAM: ' +
+          '64GB DDR5 6000MHz, Almacenamiento: 2TB NVMe PCIe 4.0 SSD, Enfriamiento: Enfriamiento líquido AIO 360mm', precio: 74000, imagen: '../images/naruto.jpg' },
+    { id : 2,nombre: 'Iron Man', descripcion: 'Procesador: AMD Ryzen 9 7950X, GPU: NVIDIA GeForce RTX 4080 16GB, ' +
+          'RAM: 64GB DDR5 5200MHz, Almacenamiento: 2TB NVMe PCIe 4.0 SSD + 4TB HDD, ' +
+          'Enfriamiento: Enfriamiento líquido AIO 240mm', precio: 85000, imagen: '../images/ironman.jpeg' },
+    { id : 3,nombre: 'Minecraft', descripcion: 'Procesador: Intel Xeon W-2400, GPU: NVIDIA RTX A6000 48GB, ' +
+          'RAM: 128GB DDR5 4800MHz, Almacenamiento: 4TB NVMe PCIe 4.0 SSD, Enfriamiento: Enfriamiento por aire avanzado', precio: 79900, imagen: '../images/minecraft.jpg' },
+    { id : 4,nombre: 'Mjölnir', descripcion: 'Procesador: Intel Core i7-13700K, GPU: NVIDIA GeForce RTX 4070 Ti 12GB, ' +
+          'RAM: 32GB DDR5 5200MHz, Almacenamiento: 1TB NVMe PCIe 4.0 SSD, Enfriamiento: Enfriamiento líquido AIO 240mm', precio: 69000, imagen: '../images/thor_pc.png' },
+    { id : 5,nombre: 'Producto 4', descripcion: 'Procesador: AMD Ryzen 9 7900X, GPU: AMD Radeon RX 7900 XTX 24GB, RAM: ' +
+          '64GB DDR5 5600MHz, Almacenamiento: 2TB NVMe PCIe 4.0 SSD, Enfriamiento: Enfriamiento por aire avanzado', precio: 45900, imagen: '../images/thor_pc.png' },
+    { id : 6,nombre: 'Producto 4', descripcion: 'Procesador: AMD Ryzen 7 7800X3D, GPU: NVIDIA GeForce RTX 4090 24GB, ' +
+          'RAM: 32GB DDR5 6000MHz, Almacenamiento: 1TB NVMe PCIe 4.0 SSD, Enfriamiento: Enfriamiento líquido AIO 360mm', precio: 35900, imagen: '../images/thor_pc.png' },
+    { id : 7,nombre: 'Producto 4', descripcion: 'Procesador: Intel Xeon W9-3495X, GPU: NVIDIA RTX 6000 Ada, ' +
+          'RAM: 256GB DDR5 4800MHz, Almacenamiento: 8TB NVMe PCIe 4.0 SSD, Enfriamiento: Enfriamiento líquido custom', precio: 72900, imagen: '../images/thor_pc.png' },
+    { id : 8,nombre: 'Producto 4', descripcion: 'Procesador: Intel Core i5-13600K, GPU: NVIDIA GeForce RTX 4060 Ti 8GB, ' +
+          'RAM: 16GB DDR5 4800MHz, Almacenamiento: 512GB NVMe PCIe 4.0 SSD, Enfriamiento: Enfriamiento por aire avanzado', precio: 69000, imagen: '../images/thor_pc.png' },
+    { id : 9,nombre: 'Producto 4', descripcion: 'Procesador: AMD Ryzen Threadripper PRO 5995WX, ' +
+          'GPU: NVIDIA RTX A5500 24GB, RAM: 512GB DDR4 ECC, Almacenamiento: 16TB NVMe PCIe 4.0 SSD, Enfriamiento: Enfriamiento líquido custom', precio: 59900, imagen: '../images/thor_pc.png' },
+    { id : 10,nombre: 'Producto 4', descripcion: 'Procesador: Intel Core i9-13900KF, GPU: AMD Radeon RX 7900 XT 20GB,' +
+          ' RAM: 32GB DDR5 5200MHz, Almacenamiento: 1TB NVMe PCIe 4.0 SSD + 2TB HDD, Enfriamiento: Enfriamiento líquido AIO 280mm', precio: 65900, imagen: '../images/thor_pc.png' },
+    { id : 11,nombre: 'Producto 4', descripcion: 'Procesador: Intel Core i7-13700K, GPU: NVIDIA GeForce RTX 4070 Ti 12GB, ' +
+          'RAM: 32GB DDR5 5200MHz, Almacenamiento: 1TB NVMe PCIe 4.0 SSD, Enfriamiento: Enfriamiento líquido AIO 240mm', precio: 87900, imagen: '../images/thor_pc.png' },
+    { id : 12,nombre: 'Producto 4', descripcion: 'Procesador: AMD Ryzen 7 7800X3D, GPU: NVIDIA GeForce RTX 4090 24GB,' +
+          ' RAM: 32GB DDR5 6000MHz, Almacenamiento: 1TB NVMe PCIe 4.0 SSD, Enfriamiento: Enfriamiento líquido AIO 360mm', precio: 89900, imagen: '../images/thor_pc.png' },
+    { id : 13,nombre: 'Producto 4', descripcion: 'Procesador: Intel Core i9-13900K, GPU: NVIDIA GeForce RTX 4090 24GB, ' +
+          'RAM: 64GB DDR5 6000MHz, Almacenamiento: 2TB NVMe PCIe 4.0 SSD, Enfriamiento: Enfriamiento líquido AIO 360mm', precio: 79000, imagen: '../images/thor_pc.png' },
+    { id : 14,nombre: 'Producto 4', descripcion: 'Procesador: AMD Ryzen 9 7950X, GPU: NVIDIA GeForce RTX 4080 16GB, ' +
+          'RAM: 64GB DDR5 5200MHz, Almacenamiento: 2TB NVMe PCIe 4.0 SSD + 4TB HDD, Enfriamiento: Enfriamiento líquido AIO 240mm', precio: 84900, imagen: '../images/thor_pc.png' },
+    { id : 15,nombre: 'Producto 4', descripcion: 'Procesador: Intel Xeon W-2400, GPU: NVIDIA RTX A6000 48GB,' +
+          ' RAM: 128GB DDR5 4800MHz, Almacenamiento: 4TB NVMe PCIe 4.0 SSD, Enfriamiento: Enfriamiento por aire avanzado', precio: 76900, imagen: '../images/thor_pc.png' },
   ];
   res.render('catalogo', { title:'Catálogo | Odín', productos });
 });
