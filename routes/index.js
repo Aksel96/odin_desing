@@ -2,14 +2,13 @@ var express = require('express');
 var router = express.Router();
 var db = require('../config/db');
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Odin' });
 });
 
 router.get('/contacto', function(req, res, next) {
   res.render('contacto', { title: ' Contacto | Odin' });
-})
+});
 
 router.get('/catalogo', (req, res) => {
   const productos = [
@@ -21,8 +20,6 @@ router.get('/catalogo', (req, res) => {
   res.render('catalogo', { title:'Catálogo | Odín', productos });
 });
 
-
-
 router.get('/favoritos',(req, res, next) => {
   const sql = 'SELECT * FROM favoritos';
   db.query(sql, (error, resultados) => {
@@ -30,24 +27,20 @@ router.get('/favoritos',(req, res, next) => {
       console.log('Error en la consulta', error );
     }
     res.render('favoritos', {favoritos : resultados});
-    //res.json(resultados);
-  } );
-
+  });
 });
 
-// Ruta para mostrar el formulario de registro
-// Ruta para mostrar el formulario de registro
 
 router.get('/formRegistrarse', function(req, res, next) {
   res.render('registrarse');
 });
 
-// Ruta para registrar usuarios (se hace el INSERT aquí)
+
 router.post('/login', (req, res, next) => {
   console.log(req.body);
   const {name, email, password} = req.body;
 
-  // Insertar los datos del usuario en la base de datos
+
   const sql = "INSERT INTO login(name, email, password) VALUES (?,?,?)";
   db.query(sql, [name, email, password], (error, result) => {
     if(error){
@@ -58,15 +51,15 @@ router.post('/login', (req, res, next) => {
     }
   });
 });
+
+
 router.get('/formLogin2', function(req, res, next) {
   res.render('login');
 });
-// Ruta para login y verificar credenciales (solo verifica, no inserta)
+
 router.post('/login2', (req, res, next) => {
   console.log(req.body);
   const {email, password} = req.body;
-
-  // Consultar si el usuario existe con el email y password proporcionados
   const sql = "SELECT * FROM login WHERE email = ? AND password = ?";
   db.query(sql, [email, password], (error, result) => {
     if(error){
@@ -74,37 +67,46 @@ router.post('/login2', (req, res, next) => {
       return res.status(500).render('error');
     }
 
-    // Si se encuentra el usuario
     if(result.length > 0) {
-      res.redirect('/');  // Redirige a la página de inicio (index)
+      const name = result[0].name;
+      res.render('login', {
+        message: `Bienvenido, ${name}`,
+        name: name
+      });
     } else {
-      res.render('login', {message: 'Usuario no encontrado, por favor regístrate.'});
+      res.render('login', { message: 'Usuario no encontrado, por favor regístrate.' });
     }
   });
 });
 
+router.post('/favoritos', (req, res) => {
+  const { modelo, caracteristicas, precio } = req.body;
 
-
-
-//const Favoritos = require('./models/Favoritos'); // Modelo para almacenar los favoritos
-
-router.post('/favoritos', async (req, res) => {
-  const { id } = req.body;
-
-  if (!id) {
-    return res.status(400).json({ error: 'ID del producto es requerido' });
+  if (!modelo || !caracteristicas || !precio) {
+    return res.status(400).json({ error: 'Todos los campos son requeridos' });
   }
 
-  try {
-    // Guarda el ID en la base de datos
-    //await Favoritos.create({ productoId: id });
-    // eso no se que hacia pero aqui se hace el insert
+  const sql = 'INSERT INTO favoritos (modelo, caracteristicas, precio) VALUES (?, ?, ?)';
+  db.query(sql, [modelo, caracteristicas, precio], (error, result) => {
+    if (error) {
+      console.error('Error en la consulta de inserción', error);
+      return res.status(500).json({ error: 'Error al insertar en la base de datos' });
+    }
     res.status(200).json({ message: 'Producto añadido a favoritos' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error al añadir el producto a favoritos' });
-  }
+  });
 });
 
+router.post('/eliminar-favorito/:id', (req, res) => {
+  const favoritoId = req.params.id;
+
+  const sql = "DELETE FROM favoritos WHERE id = ?";
+  db.query(sql, [favoritoId], (error, result) => {
+    if (error) {
+      console.log('Error al eliminar el favorito:', error);
+      return res.status(500).send('Error al eliminar');
+    }
+    res.redirect('/favoritos');
+  });
+});
 
 module.exports = router;

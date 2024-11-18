@@ -9,7 +9,12 @@
                         <h5 class="card-title">{{this.nombre}}</h5>
                         <p class="card-text">{{this.descripcion}}</p>
                         <p class="fw-bold">$ {{this.precio}}</p>
-                        <button class="btn btn-primary add-to-favorites" data-id="{{this.id}}">Añadir a Favoritos</button>
+                        <button class="btn btn-primary add-to-favorites"
+                                data-modelo="{{this.nombre}}"
+                                data-caracteristicas="{{this.descripcion}}"
+                                data-precio="{{this.precio}}">
+                            Añadir a Favoritos
+                        </button>
                     </div>
                 </div>
             </div>
@@ -23,15 +28,19 @@
 
         buttons.forEach(button => {
             button.addEventListener('click', () => {
-                const productId = button.getAttribute('data-id');
+                const modelo = button.getAttribute('data-modelo');
+                const caracteristicas = button.getAttribute('data-caracteristicas');
+                const precio = button.getAttribute('data-precio');
 
-                // Enviar el ID al servidor
+                // Enviar los datos al servidor
+                
                 fetch('/favoritos', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ id: productId })
+                    body: JSON.stringify({ modelo, caracteristicas, precio })
+
                 })
                         .then(response => {
                             if (response.ok) {
