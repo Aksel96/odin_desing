@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var db = require('../config/db');
 
-
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Odin' });
 });
@@ -58,19 +57,15 @@ router.get('/formLogin2', function(req, res, next) {
   res.render('login');
 });
 
-
 router.post('/login2', (req, res, next) => {
   console.log(req.body);
   const {email, password} = req.body;
-
-
   const sql = "SELECT * FROM login WHERE email = ? AND password = ?";
   db.query(sql, [email, password], (error, result) => {
     if(error){
       console.log('Error en la consulta de búsqueda', error);
       return res.status(500).render('error');
     }
-
 
     if(result.length > 0) {
       const name = result[0].name;

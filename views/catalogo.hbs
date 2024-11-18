@@ -15,7 +15,6 @@
                                 data-precio="{{this.precio}}">
                             Añadir a Favoritos
                         </button>
-
                     </div>
                 </div>
             </div>
@@ -34,12 +33,14 @@
                 const precio = button.getAttribute('data-precio');
 
                 // Enviar los datos al servidor
+                
                 fetch('/favoritos', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({ modelo, caracteristicas, precio })
+
                 })
                         .then(response => {
                             if (response.ok) {
@@ -52,5 +53,4 @@
             });
         });
     });
-
 </script>
