@@ -1,34 +1,37 @@
-<h1 class="text-center text-white pt-3">Favoritos</h1>
-<div class="d-flex justify-content-center align-items-center pt-4 favoritos-class">
+<h1 class="text-center text-white m-3">Favoritos</h1>
+<div class="d-flex justify-content-center align-items-center favoritos-class">
     {{#if favoritos.length}}
-        <table class="table-borderless">
-            <thead>
-            <tr>
-                <th class="p-4">ID</th>
-                <th class="p-4">Modelo</th>
-                <th class="p-4">Caracteristicas</th>
-                <th class="p-4">Precio</th>
-                <th class="p-4">Acciones</th>
-            </tr>
-            </thead>
-            <tbody>
-            {{#each favoritos}}
+        <div class="table-responsive" style="max-height: 400px; overflow-y: auto; width: 100%;">
+            <table class="table table-hover">
+                <thead style="position: sticky; top: 0; z-index: 1;">
                 <tr>
-                    <td class="p-4">{{this.id}}</td>
-                    <td class="p-4">{{this.modelo}}</td>
-                    <td class="p-4">{{this.caracteristicas}}</td>
-                    <td class="p-4">{{this.precio}}</td>
-                    <td>
-                        <form action="/eliminar-favorito/{{this.id}}" method="POST" style="display:inline;">
-                            <button type="button" class="btn btn-danger" onclick="confirmarEliminacion(event, this)">Eliminar</button>
-                        </form>
-                    </td>
+                    <th class="p-3 bg-black text-white">Modelo</th>
+                    <th class="p-3 bg-black text-white">Características</th>
+                    <th class="p-3 bg-black text-white">Precio</th>
+                    <th class="p-3 bg-black text-white">Acción</th>
                 </tr>
-            {{/each}}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                {{#each favoritos}}
+                    <tr>
+                        <td class=" bg-dark text-white ">{{this.modelo}}</td>
+                        <td class=" bg-dark text-white">{{this.caracteristicas}}</td>
+                        <td class=" bg-dark text-white">{{this.precio}}</td>
+                        <td class="bg-dark text-white">
+                            <form action="/eliminar-favorito/{{this.id}}" method="POST" style="display:inline;">
+                                <button type="button" class="btn btn-danger" onclick="confirmarEliminacion(event, this)">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
+    {{else}}
+        <p class="text-center text-white">No tienes elementos en tu lista de favoritos.</p>
     {{/if}}
 </div>
+
 
 
 <script>
